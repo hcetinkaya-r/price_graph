@@ -12,21 +12,21 @@ class LineTitles{
       getTextStyles: (value) => const TextStyle(
         color: Color(0xff68737d),
         fontWeight: FontWeight.bold,
-        fontSize: 16,
+        fontSize: 15,
       ),
       getTitles: (value) {
         switch (value.toInt()) {
           case 1:
             return '1G';
-          case 3:
+          case 2:
             return '1H';
-          case 5:
+          case 3:
             return '1A';
-          case 7:
+          case 4:
               return '3A';
-          case 9:
+          case 5:
               return '1Y';
-          case 11:
+          case 6:
               return '5Y';
 
         }
@@ -39,7 +39,7 @@ class LineTitles{
       getTextStyles: (value) => const TextStyle(
         color: Color(0xff67727d),
         fontWeight: FontWeight.bold,
-        fontSize: 15,
+        fontSize: 10,
       ),
       getTitles: (value) {
         switch (value.toInt()) {
@@ -58,9 +58,10 @@ class LineTitles{
         }
         return '';
       },
-      reservedSize: 35,
-      margin: 12,
-    )
+      reservedSize: 25,
+      margin: 10,
+    ),
+
   );
 
 }

@@ -1,3 +1,5 @@
+
+
 import 'package:finfree_price_graph/models/the1A.dart';
 import 'package:finfree_price_graph/models/the1G.dart';
 import 'package:finfree_price_graph/models/the1H.dart';
@@ -13,8 +15,18 @@ class PriceEntry {
   List<The1Y> the1y;
   List<The5Y> the5y;
 
-  PriceEntry(
-      {this.the1g, this.the1h, this.the1a, this.the3a, this.the1y, this.the5y});
+  PriceEntry({
+      this.the1g,
+      this.the1h,
+      this.the1a,
+      this.the3a,
+      this.the1y,
+      this.the5y});
+
+
+
+
+
 
   PriceEntry.fromJson(dynamic json) {
     if (json["1G"] != null) {
@@ -55,26 +67,6 @@ class PriceEntry {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    if (the1g != null) {
-      map["1G"] = the1g.map((v) => v.toJson()).toList();
-    }
-    if (the1h != null) {
-      map["1H"] = the1h.map((v) => v.toJson()).toList();
-    }
-    if (the1a != null) {
-      map["1A"] = the1a.map((v) => v.toJson()).toList();
-    }
-    if (the3a != null) {
-      map["3A"] = the3a.map((v) => v.toJson()).toList();
-    }
-    if (the1y != null) {
-      map["1Y"] = the1y.map((v) => v.toJson()).toList();
-    }
-    if (the5y != null) {
-      map["5Y"] = the5y.map((v) => v.toJson()).toList();
-    }
-    return map;
-  }
+
+
 }
