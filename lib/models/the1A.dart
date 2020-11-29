@@ -4,7 +4,16 @@ class The1A {
 
   The1A({this.d, this.c});
 
-  The1A.fromJson(dynamic json) {
+
+  factory The1A.fromJson(Map<String, dynamic> json) => The1A(
+  d: json["d"],
+  c: json["c"].toDouble()
+  );
+
+
+
+
+  /*The1A.fromJson(dynamic json) {
     d = json["d"];
     c = json["c"].toDouble();
   }
@@ -14,7 +23,7 @@ class The1A {
     map["d"] = d;
     map["c"] = c;
     return map;
-  }
+  }*/
 
 
 

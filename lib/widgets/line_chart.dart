@@ -1,11 +1,11 @@
-import 'package:finfree_price_graph/models/price_entry.dart';
+import 'package:finfree_price_graph/models/the1G.dart';
 import 'package:finfree_price_graph/widgets/line_titles.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:io';
+
 
 class LineChartWidget extends StatefulWidget {
   @override
@@ -18,44 +18,117 @@ class _LineChartWidgetState extends State<LineChartWidget> {
     const Color(0xff02d39a),
   ];
 
-  PriceEntry priceEntry;
-  List<PriceEntry> data;
+  String url = 'https://finfree.app/demo';
+  String key = 'R29vZCBMdWNr';
 
-  // ignore: missing_return
-  Future<List<PriceEntry>> getEntry() async {
-    final response = await http.get('https://finfree.app/demo',
-        headers: {HttpHeaders.authorizationHeader: 'R29vZCBMdWNr'});
-    if (response.statusCode == 200) {
-      Map<String, dynamic> responseJson = jsonDecode(response.body);
-      var data = PriceEntry.fromJson(responseJson);
+  List data1H;
+  List data1A;
+  List data3A;
+  List data1Y;
+  List data5Y;
 
-      Map<String, dynamic> priceData = jsonDecode(response.body);
-      var newData = priceData["1G"][5];
-      print("New data: " + newData.toString());
 
-      print("Yeni data: ${data.the1y.map((e) => e.d)}");
+  double min1H_c;
+  double max1H_c;
+  double min1A_c;
+  double max1A_c;
+  double min3A_c;
+  double max3A_c;
+  double min1Y_c;
+  double max1Y_c;
+  double min5Y_c;
+  double max5Y_c;
 
-      print(response.statusCode);
-      print(response.body.length);
-      print(responseJson);
-      print(
-          "DATA : " + PriceEntry.fromJson(responseJson).the1y[0].c.toString());
 
-      //return PriceEntry.fromJson(responseJson);
+  int min1H_d;
+  int max1H_d;
+  int min1A_d;
+  int max1A_d;
+  int min3A_d;
+  int max3A_d;
+  int min1Y_d;
+  int max1Y_d;
+  int min5Y_d;
+  int max5Y_d;
 
-      //return data.map((json) => PriceEntry.fromJson(json)).toList();
-    } else {
-      print("ERROR: ${response.statusCode}");
-      throw Exception("ERROR: ${response.statusCode}");
-    }
-  }
+  List<FlSpot> flSpotList;
+
+
+  The1G the1g;
+
+
+
+
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getEntry();
-    //data=List();
+    makeRequest();
+  }
+
+  Future<String> makeRequest() async {
+    var response = await http.get(Uri.encodeFull(url),
+        headers: {HttpHeaders.authorizationHeader: key});
+
+    var extractData = jsonDecode(response.body);
+
+    data1H = extractData["1H"];
+    data1A = extractData["1A"];
+    data3A = extractData["3A"];
+    data1Y = extractData["1Y"];
+    data5Y = extractData["5Y"];
+
+    //min-max value for c:
+
+
+    data1H.sort((a, b) => a['c'].compareTo(b['c']));
+    min1H_c = data1H.first['c'];
+    max1H_c = data1H.last['c'];
+
+    data1A.sort((a, b) => a['c'].compareTo(b['c']));
+    min1A_c = data1A.first['c'];
+    max1A_c = data1A.last['c'];
+
+    data3A.sort((a, b) => a['c'].compareTo(b['c']));
+    min3A_c = data3A.first['c'];
+    max3A_c = data3A.last['c'];
+
+    data1Y.sort((a, b) => a['c'].compareTo(b['c']));
+    min1Y_c = data1Y.first['c'];
+    max1Y_c = data1Y.last['c'];
+
+    data5Y.sort((a, b) => a['c'].compareTo(b['c']));
+    min5Y_c = data5Y.first['c'];
+    max5Y_c = data5Y.last['c'];
+
+    //min-max value for d:
+
+
+
+    data1H.sort((a, b) => a['d'].compareTo(b['d']));
+    min1H_d = data1H.first['d'];
+    max1H_d = data1H.last['d'];
+
+    data1A.sort((a, b) => a['d'].compareTo(b['d']));
+    min1A_d = data1A.first['d'];
+    max1A_d = data1A.last['d'];
+
+    data3A.sort((a, b) => a['d'].compareTo(b['d']));
+    min3A_d = data3A.first['d'];
+    max3A_d = data3A.last['d'];
+
+    data1Y.sort((a, b) => a['d'].compareTo(b['d']));
+    min1Y_d = data1Y.first['d'];
+    max1Y_d = data1Y.last['d'];
+
+    data5Y.sort((a, b) => a['d'].compareTo(b['d']));
+    min5Y_d = data5Y.first['d'];
+    max5Y_d = data5Y.last['d'];
+
+    print("Min 5Y d: ${min5Y_d.toString()}");
+    print("Max 5Y d: ${max5Y_d.toString()}");
   }
 
   @override
@@ -90,7 +163,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
             LineChartBarData(
               spots: [
                 FlSpot(0, 0),
-                FlSpot(2.6, 2),
+                FlSpot(2.1, 3.1),
                 FlSpot(4.9, 5),
                 FlSpot(6.8, 2.5),
                 FlSpot(8, 4),

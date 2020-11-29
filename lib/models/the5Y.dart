@@ -7,7 +7,12 @@ class The5Y {
     this.c,
   });
 
-  The5Y.fromJson(dynamic json) {
+  factory The5Y.fromJson(Map<String, dynamic> json) => The5Y(
+      d: json["d"],
+      c: json["c"].toDouble()
+  );
+
+  /*The5Y.fromJson(dynamic json) {
     d = json["d"];
     c = json["c"].toDouble();
   }
@@ -18,5 +23,5 @@ class The5Y {
     map["c"] = c;
 
     return map;
-  }
+  }*/
 }

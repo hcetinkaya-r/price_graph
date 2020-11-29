@@ -1,7 +1,6 @@
 import 'package:finfree_price_graph/pages/line_chart_page.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
 
@@ -30,5 +29,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+
       );
 }
