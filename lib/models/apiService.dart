@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class ApiService {
   String error = "ERROR: data can't get";
 
-  Future<PriceEntry> getEntries() async {
+  Future<PriceEntry>getEntries() async {
     var client = http.Client();
     var priceEntry = null;
 

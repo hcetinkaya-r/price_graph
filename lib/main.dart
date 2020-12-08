@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'API - JSON - HTTP - fl_chart',
-      home: HomePage(),
+      home: HomePage(title: 'Price Entry Chart'),
     );
   }
 }

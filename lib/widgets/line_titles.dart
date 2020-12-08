@@ -8,11 +8,11 @@ class LineTitles{
     show: true,
     bottomTitles: SideTitles(
       showTitles: true,
-      reservedSize: 35,
+      reservedSize: 25,
       getTextStyles: (value) => const TextStyle(
         color: Color(0xff68737d),
         fontWeight: FontWeight.bold,
-        fontSize: 15,
+        fontSize: 13,
       ),
       getTitles: (value) {
         switch (value.toInt()) {
